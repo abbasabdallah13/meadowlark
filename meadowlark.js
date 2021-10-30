@@ -3,6 +3,7 @@ const app = express();
 const handlebars = require("express3-handlebars").create({
   defaultLayout: "main",
 });
+const names = require("./my_modules/names");
 
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
@@ -15,10 +16,11 @@ app.get("/", (req, res) => {
   res.render("home.handlebars");
 });
 
-const names = ["abbas", "ali", "mhmd", "hussein"];
+// const names = ["abbas", "ali", "mhmd", "hussein"];
 app.get("/about", (req, res) => {
-  let randomName = names[Math.floor(Math.random() * names.length)];
-  res.render("about", { names: "hello " + randomName });
+  // let randomName = names[Math.floor(Math.random() * names.length)];
+  // res.render("about", { names: "hello " + randomName });
+  res.render("about", { names: names.randomNames() });
 });
 
 app.use((req, res) => {
